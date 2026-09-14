@@ -26,13 +26,13 @@ Universitas Brawijaya
 
 ## Ringkasan Proyek
 
-Proyek ini merupakan kelanjutan dari Proyek Kerja Lapangan di Direktorat Teknologi Informasi Universitas Brawijaya (DTI UB), yang berangkat dari permasalahan monitoring parkir di lingkungan Universitas Brawijaya.
+Proyek ini dikembangkan sebagai kelanjutan dari Proyek Kerja Lapangan di Direktorat Teknologi Informasi Universitas Brawijaya (DTI UB). Latar belakang proyek ini berasal dari permasalahan monitoring parkir di lingkungan Universitas Brawijaya, khususnya terkait ketidaksesuaian informasi kapasitas parkir dengan kondisi sebenarnya di lapangan.
 
-Permasalahan utama yang diangkat adalah ketidaksesuaian informasi kapasitas parkir. Dalam beberapa kondisi, area parkir yang sebenarnya sudah penuh masih dapat dianggap tersedia, sehingga mahasiswa membuang waktu untuk mencari tempat parkir. Sebaliknya, area parkir yang masih memiliki ruang kosong dapat terlihat penuh, sehingga pemanfaatan lahan parkir menjadi kurang efektif.
+Dalam beberapa kondisi, area parkir yang sebenarnya sudah penuh masih dapat dianggap tersedia, sehingga mahasiswa perlu menghabiskan waktu lebih lama untuk mencari tempat parkir. Sebaliknya, area parkir yang masih memiliki ruang kosong dapat terlihat seolah-olah sudah penuh, sehingga pemanfaatan lahan parkir menjadi kurang efektif.
 
-Untuk menjawab permasalahan tersebut, proyek ini mengembangkan sistem klasifikasi sepeda motor dan objek non-motor pada skenario parkir satu gerbang. Sistem menggunakan sensor load cell untuk membaca perubahan beban saat objek melintas, sensor ultrasonik untuk mendukung deteksi arah, serta metode Decision Tree untuk proses klasifikasi.
+Untuk menjawab permasalahan tersebut, proyek ini mengembangkan prototipe sistem monitoring parkir satu gerbang yang mampu mengklasifikasikan objek yang melintas sebagai sepeda motor atau objek non-motor. Sistem memanfaatkan sinyal beban dinamis dari sensor load cell, sensor ultrasonik untuk mendukung deteksi arah, serta metode Decision Tree untuk proses klasifikasi.
 
-Hasil klasifikasi dan deteksi arah digunakan untuk memperbarui informasi kapasitas parkir secara otomatis dan menampilkannya melalui LED P10.
+Hasil klasifikasi dan deteksi arah kemudian digunakan untuk memperbarui informasi kapasitas parkir secara otomatis dan menampilkannya melalui LED P10.
 
 ---
 
@@ -44,9 +44,11 @@ Hasil klasifikasi dan deteksi arah digunakan untuk memperbarui informasi kapasit
 
 ## Latar Belakang Singkat
 
-Sistem monitoring parkir menjadi penting karena informasi kapasitas parkir yang tidak akurat dapat mengganggu efektivitas penggunaan lahan parkir. Pada area kampus, kondisi ini dapat menyebabkan pengguna menghabiskan waktu lebih lama untuk mencari tempat parkir atau mengabaikan area parkir yang sebenarnya masih tersedia.
+Monitoring kapasitas parkir merupakan salah satu bagian penting dalam pengelolaan area parkir, terutama pada lingkungan kampus dengan tingkat mobilitas mahasiswa yang tinggi. Informasi kapasitas parkir yang tidak akurat dapat menyebabkan pengguna membuang waktu untuk mencari ruang parkir, atau membuat area parkir yang masih tersedia menjadi tidak dimanfaatkan secara optimal.
 
-Pada penelitian ini, pendekatan yang digunakan adalah monitoring pada satu gerbang. Objek yang melintas diklasifikasikan sebagai sepeda motor atau non-motor berdasarkan pola sinyal beban dinamis dari sensor load cell. Dengan pendekatan ini, sistem dapat membantu memperbarui kapasitas parkir berdasarkan objek yang benar-benar masuk atau keluar dari area parkir.
+Pendekatan yang digunakan pada proyek ini adalah monitoring pada satu gerbang. Objek yang melewati gerbang diklasifikasikan berdasarkan pola sinyal beban dinamis yang terbaca oleh sensor load cell. Dengan pendekatan ini, sistem tidak hanya mendeteksi adanya objek yang melintas, tetapi juga membedakan apakah objek tersebut termasuk sepeda motor atau bukan.
+
+Klasifikasi tersebut penting karena tidak semua objek yang melintasi area pengukuran seharusnya memengaruhi kapasitas parkir sepeda motor. Oleh karena itu, sistem dirancang agar kapasitas parkir hanya diperbarui berdasarkan objek yang sesuai dan arah pergerakannya.
 
 ---
 
@@ -55,7 +57,7 @@ Pada penelitian ini, pendekatan yang digunakan adalah monitoring pada satu gerba
 Tujuan dari proyek ini adalah membangun prototipe sistem yang mampu:
 
 - membaca sinyal beban dinamis dari objek yang melintas,
-- membedakan sepeda motor dan objek non-motor,
+- mengklasifikasikan objek sebagai sepeda motor atau non-motor,
 - mendeteksi arah pergerakan objek,
 - memperbarui kapasitas parkir secara otomatis,
 - menampilkan informasi kapasitas parkir melalui LED P10.
@@ -115,7 +117,7 @@ ESP32 Receiver + LED P10
 
 ## Alur Kerja Sistem
 
-Secara umum, sistem bekerja melalui beberapa tahapan berikut:
+Secara umum, sistem bekerja melalui tahapan berikut:
 
 1. Objek melewati platform pengukuran.
 2. Sensor load cell membaca perubahan beban dalam bentuk nilai raw.
@@ -203,13 +205,13 @@ Fitur berikut digunakan untuk merepresentasikan karakteristik sinyal beban dinam
 | Akurasi deteksi arah | 97,27% |
 | Akurasi perhitungan kapasitas parkir | 89,09% |
 
-Hasil pengujian menunjukkan bahwa sistem dapat melakukan klasifikasi objek dan pembaruan kapasitas parkir secara otomatis pada skenario pengujian yang telah dilakukan.
+Hasil pengujian menunjukkan bahwa sistem dapat melakukan klasifikasi objek, mendeteksi arah pergerakan, dan memperbarui kapasitas parkir secara otomatis pada skenario pengujian yang telah dilakukan.
 
 ---
 
 ## Dokumentasi dan Publikasi
 
-Dokumen, slide presentasi, demo sistem, dan artikel publikasi dapat diakses melalui tautan berikut.
+Dokumentasi proyek, slide presentasi, demo sistem, dan artikel publikasi dapat diakses melalui tautan berikut.
 
 <p>
   <a href="https://canva.link/vgku0oqrcwyb0u5">
@@ -229,11 +231,7 @@ Dokumen, slide presentasi, demo sistem, dan artikel publikasi dapat diakses mela
   </a>
 </p>
 
-Dokumen skripsi lengkap tersedia pada:
-
-```text
-docs/skripsi-zidan-fadil-yahya.pdf
-```
+Artikel jurnal digunakan sebagai dokumentasi akademik utama yang dapat diakses secara publik. Dokumen skripsi lengkap tidak disertakan langsung pada repositori ini.
 
 ---
 
@@ -255,26 +253,16 @@ Bagian ini dapat digunakan untuk menampilkan foto prototipe sistem, seperti plat
 ## Struktur Repositori
 
 ```text
-docs/        Dokumen skripsi dan file presentasi
 firmware/    Source code ESP32-S3 dan ESP32 receiver
 ml/          Notebook, script, dan rule model machine learning
 hardware/    Dokumentasi wiring dan skematik perangkat keras
 media/       Gambar, diagram, dan visual hasil pengujian
-data/        Contoh dataset
+data/        Contoh dataset atau contoh hasil ekstraksi fitur
 ```
 
 ---
 
 ## Rencana Isi Folder
-
-### docs/
-
-Berisi dokumen akademik yang berkaitan dengan proyek.
-
-```text
-skripsi-zidan-fadil-yahya.pdf
-presentation.pdf
-```
 
 ### firmware/
 
@@ -327,9 +315,9 @@ sample/
 
 ## Catatan Dataset
 
-Dataset penuh tidak selalu perlu dipublikasikan secara langsung pada repositori ini. Untuk menjaga kerapian dokumentasi dan menghindari data yang tidak diperlukan, repositori ini dapat hanya menyertakan contoh data atau contoh hasil ekstraksi fitur.
+Dataset penuh tidak selalu perlu dipublikasikan secara langsung pada repositori ini. Untuk menjaga kerapian dokumentasi dan menghindari data mentah yang tidak diperlukan, repositori ini dapat hanya menyertakan contoh data atau contoh hasil ekstraksi fitur.
 
-Contoh data dapat digunakan untuk memperlihatkan format fitur yang dipakai dalam proses klasifikasi.
+Contoh data digunakan untuk memperlihatkan format fitur yang dipakai dalam proses klasifikasi.
 
 ---
 
@@ -361,4 +349,4 @@ Universitas Brawijaya
 
 Source code pada repositori ini menggunakan MIT License.
 
-Dokumen skripsi, file presentasi, gambar, dan materi akademik tetap menjadi milik akademik penulis.
+Artikel jurnal, slide presentasi, gambar, dan materi akademik tetap menjadi milik akademik penulis. Dokumen skripsi lengkap tidak dipublikasikan langsung pada repositori ini.

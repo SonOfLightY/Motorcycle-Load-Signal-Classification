@@ -80,14 +80,7 @@ Tujuan dari proyek ini adalah membangun prototipe sistem yang mampu:
 
 ## Arsitektur Sistem
 
-<!--
-Tambahkan gambar arsitektur sistem di folder media dengan nama:
-media/system-architecture.png
-
-Setelah gambar tersedia, hapus komentar ini dan aktifkan baris di bawah.
--->
-
-<!-- ![Arsitektur Sistem](media/system-architecture.png) -->
+![Arsitektur Sistem](media/system-architecture.jpeg)
 
 Sistem terdiri dari ESP32-S3 sebagai unit utama, sensor load cell, modul HX711, sensor ultrasonik, komunikasi ESP-NOW, ESP32 receiver, dan LED P10 sebagai media tampilan.
 
@@ -148,14 +141,7 @@ Secara umum, sistem bekerja melalui tahapan berikut:
 
 ## Alur Machine Learning
 
-<!--
-Tambahkan gambar alur machine learning di folder media dengan nama:
-media/ml-pipeline.png
-
-Setelah gambar tersedia, hapus komentar ini dan aktifkan baris di bawah.
--->
-
-<!-- ![Alur Machine Learning](media/ml-pipeline.png) -->
+![Alur Machine Learning](media/ml-pipeline.jpeg)
 
 Model Decision Tree dilatih menggunakan fitur yang diekstraksi dari sinyal beban dinamis.
 
@@ -237,14 +223,7 @@ Artikel jurnal digunakan sebagai dokumentasi akademik utama yang dapat diakses s
 
 ## Tampilan Prototipe
 
-<!--
-Tambahkan foto prototipe di folder media dengan nama:
-media/prototype.jpg
-
-Setelah gambar tersedia, hapus komentar ini dan aktifkan baris di bawah.
--->
-
-<!-- ![Tampilan Prototipe](media/prototype.jpg) -->
+![Tampilan Prototipe](media/prototype.jpeg)
 
 Bagian ini dapat digunakan untuk menampilkan foto prototipe sistem, seperti platform pengukuran, rangkaian sensor, ESP32-S3, dan LED P10.
 

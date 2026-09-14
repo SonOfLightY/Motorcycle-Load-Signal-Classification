@@ -1,14 +1,12 @@
 # Machine Learning
 
-Folder ini berisi proses pengolahan data dan pelatihan model Decision Tree.
+Folder ini berisi proses pengolahan data, ekstraksi fitur, pelatihan model Decision Tree, evaluasi model, dan dokumentasi hasil machine learning yang digunakan pada sistem klasifikasi sepeda motor.
 
-## Alur
+## Struktur Folder
 
-1. Pembacaan data raw load cell
-2. Validasi baseline
-3. Penentuan threshold
-4. Segmentasi event
-5. Ekstraksi fitur
-6. Pelatihan model Decision Tree
-7. Evaluasi model
-8. Konversi rule untuk implementasi pada ESP32-S3
+```text
+colab/      Pipeline Google Colab untuk preprocessing, ekstraksi fitur, training, evaluasi, dan visualisasi
+notebooks/  Notebook eksperimen, apabila tersedia dalam format .ipynb
+scripts/    Script modular hasil pemisahan pipeline, apabila dikembangkan lebih lanjut
+model/      Rule atau hasil model Decision Tree
+outputs/    Hasil evaluasi, tabel, atau gambar keluaran

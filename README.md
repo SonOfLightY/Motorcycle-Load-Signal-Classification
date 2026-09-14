@@ -14,6 +14,7 @@ Universitas Brawijaya
 ![Platform](https://img.shields.io/badge/platform-ESP32--S3-blue)
 ![Sensor](https://img.shields.io/badge/sensor-load%20cell%20%7C%20ultrasonik-orange)
 ![Model](https://img.shields.io/badge/model-Decision%20Tree-purple)
+![Communication](https://img.shields.io/badge/communication-ESP--NOW-informational)
 ![License](https://img.shields.io/badge/license-MIT-lightgrey)
 
 <br>
@@ -26,29 +27,66 @@ Universitas Brawijaya
 
 ## Ringkasan Proyek
 
-Proyek ini dikembangkan sebagai kelanjutan dari Proyek Kerja Lapangan di Direktorat Teknologi Informasi Universitas Brawijaya (DTI UB). Latar belakang proyek ini berasal dari permasalahan monitoring parkir di lingkungan Universitas Brawijaya, khususnya terkait ketidaksesuaian informasi kapasitas parkir dengan kondisi sebenarnya di lapangan.
+Proyek ini dikembangkan sebagai kelanjutan dari Proyek Kerja Lapangan di Direktorat Teknologi Informasi Universitas Brawijaya (DTI UB). Latar belakang proyek ini berasal dari permasalahan monitoring parkir di lingkungan Universitas Brawijaya, khususnya ketidaksesuaian antara informasi kapasitas parkir yang ditampilkan dengan kondisi sebenarnya di lapangan.
 
-Dalam beberapa kondisi, area parkir yang sebenarnya sudah penuh masih dapat dianggap tersedia, sehingga mahasiswa perlu menghabiskan waktu lebih lama untuk mencari tempat parkir. Sebaliknya, area parkir yang masih memiliki ruang kosong dapat terlihat seolah-olah sudah penuh, sehingga pemanfaatan lahan parkir menjadi kurang efektif.
+Dalam beberapa kondisi, area parkir yang sebenarnya sudah penuh masih dapat dianggap tersedia, sehingga mahasiswa perlu menghabiskan waktu lebih lama untuk mencari tempat parkir. Sebaliknya, area parkir yang masih memiliki ruang kosong dapat terlihat seolah-olah penuh, sehingga pemanfaatan lahan parkir menjadi kurang efektif.
 
 Untuk menjawab permasalahan tersebut, proyek ini mengembangkan prototipe sistem monitoring parkir satu gerbang yang mampu mengklasifikasikan objek yang melintas sebagai sepeda motor atau objek non-motor. Sistem memanfaatkan sinyal beban dinamis dari sensor load cell, sensor ultrasonik untuk mendukung deteksi arah, serta metode Decision Tree untuk proses klasifikasi.
 
-Hasil klasifikasi dan deteksi arah kemudian digunakan untuk memperbarui informasi kapasitas parkir secara otomatis dan menampilkannya melalui LED P10.
+Hasil klasifikasi dan deteksi arah digunakan untuk memperbarui informasi kapasitas parkir secara otomatis dan menampilkannya melalui LED P10.
+
+---
+
+## Tampilan Prototipe
+
+![Tampilan Prototipe](media/prototype.jpeg)
+
+Prototipe sistem terdiri dari platform pengukuran, sensor load cell, sensor ultrasonik, ESP32-S3 sebagai unit pemrosesan utama, ESP32 receiver, dan LED P10 sebagai media tampilan kapasitas parkir.
+
+---
+
+## Hasil Utama
+
+| Pengujian | Hasil |
+|---|---:|
+| Akurasi model Decision Tree | 96,55% |
+| Akurasi klasifikasi real-time | 91,82% |
+| Akurasi deteksi arah | 97,27% |
+| Akurasi perhitungan kapasitas parkir | 89,09% |
+
+Hasil pengujian menunjukkan bahwa sistem dapat melakukan klasifikasi objek, mendeteksi arah pergerakan, dan memperbarui kapasitas parkir secara otomatis pada skenario pengujian yang telah dilakukan.
+
+---
+
+## Dokumentasi dan Publikasi
+
+Dokumentasi proyek, slide presentasi, demo sistem, dan artikel publikasi dapat diakses melalui tautan berikut.
+
+<p>
+  <a href="https://canva.link/vgku0oqrcwyb0u5">
+    <img src="https://img.shields.io/badge/Slide%20Presentasi-Canva-00C4CC?style=for-the-badge&logo=canva" alt="Slide Presentasi">
+  </a>
+</p>
+
+<p>
+  <a href="https://drive.google.com/drive/folders/1W88d7SP1vm2doo_kTv0_wtPjQow8c0Vc?usp=drive_link">
+    <img src="https://img.shields.io/badge/Demo%20Sistem-Google%20Drive-blue?style=for-the-badge&logo=googledrive" alt="Demo Sistem">
+  </a>
+</p>
+
+<p>
+  <a href="https://j-ptiik.ub.ac.id/index.php/j-ptiik/article/view/16677">
+    <img src="https://img.shields.io/badge/Artikel%20Jurnal-J--PTIIK%20UB-red?style=for-the-badge" alt="Artikel Jurnal">
+  </a>
+</p>
+
+Artikel jurnal digunakan sebagai dokumentasi akademik utama yang dapat diakses secara publik. Dokumen skripsi lengkap tidak disertakan langsung pada repositori ini.
 
 ---
 
 ## Judul Penelitian
 
 **Sistem Klasifikasi Sepeda Motor Berbasis Sinyal Beban Dinamis Menggunakan Metode Decision Tree pada Monitoring Parkir Satu Gerbang**
-
----
-
-## Latar Belakang Singkat
-
-Monitoring kapasitas parkir merupakan salah satu bagian penting dalam pengelolaan area parkir, terutama pada lingkungan kampus dengan tingkat mobilitas mahasiswa yang tinggi. Informasi kapasitas parkir yang tidak akurat dapat menyebabkan pengguna membuang waktu untuk mencari ruang parkir, atau membuat area parkir yang masih tersedia menjadi tidak dimanfaatkan secara optimal.
-
-Pendekatan yang digunakan pada proyek ini adalah monitoring pada satu gerbang. Objek yang melewati gerbang diklasifikasikan berdasarkan pola sinyal beban dinamis yang terbaca oleh sensor load cell. Dengan pendekatan ini, sistem tidak hanya mendeteksi adanya objek yang melintas, tetapi juga membedakan apakah objek tersebut termasuk sepeda motor atau bukan.
-
-Klasifikasi tersebut penting karena tidak semua objek yang melintasi area pengukuran seharusnya memengaruhi kapasitas parkir sepeda motor. Oleh karena itu, sistem dirancang agar kapasitas parkir hanya diperbarui berdasarkan objek yang sesuai dan arah pergerakannya.
 
 ---
 
@@ -129,13 +167,15 @@ Secara umum, sistem bekerja melalui tahapan berikut:
 
 | Komponen | Fungsi |
 |---|---|
-| ESP32-S3 | Unit utama untuk pembacaan sensor, pemrosesan data, dan klasifikasi |
+| ESP32-S3 | Unit utama untuk pembacaan sensor, pemrosesan data, klasifikasi, deteksi arah, dan pengiriman data |
 | ESP32 Receiver | Unit penerima data untuk menampilkan kapasitas parkir |
 | Sensor Load Cell | Membaca perubahan beban dinamis dari objek yang melintas |
 | Modul HX711 | Menguatkan dan mengubah sinyal load cell menjadi data digital |
-| Sensor Ultrasonik HC-SR04 | Mendeteksi keberadaan dan arah pergerakan objek |
+| Sensor Ultrasonik HC-SR04 | Mendeteksi keberadaan objek dan membantu menentukan arah pergerakan |
 | LED P10 | Menampilkan informasi kapasitas parkir |
-| Platform Pengukuran | Area lintasan objek saat proses pembacaan sensor |
+| Platform Pengukuran | Area lintasan objek saat proses pembacaan sensor dilakukan |
+
+Dokumentasi perangkat keras tersedia pada folder [`hardware/`](hardware/).
 
 ---
 
@@ -143,7 +183,7 @@ Secara umum, sistem bekerja melalui tahapan berikut:
 
 ![Alur Machine Learning](media/ml-pipeline.jpeg)
 
-Model Decision Tree dilatih menggunakan fitur yang diekstraksi dari sinyal beban dinamis.
+Model Decision Tree dilatih menggunakan fitur yang diekstraksi dari sinyal beban dinamis. Pipeline machine learning pada repositori ini didokumentasikan dalam bentuk pipeline Google Colab yang mencakup preprocessing, validasi baseline, penentuan threshold, ekstraksi fitur, pelatihan model, evaluasi, export rule, dan visualisasi hasil.
 
 ```text
 Data Raw Load Cell
@@ -182,121 +222,88 @@ Fitur berikut digunakan untuk merepresentasikan karakteristik sinyal beban dinam
 
 ---
 
-## Hasil Pengujian
+## Model Klasifikasi
 
-| Pengujian | Hasil |
-|---|---:|
-| Akurasi model Decision Tree | 96,55% |
-| Akurasi klasifikasi real-time | 91,82% |
-| Akurasi deteksi arah | 97,27% |
-| Akurasi perhitungan kapasitas parkir | 89,09% |
+Model yang digunakan adalah Decision Tree dengan konfigurasi utama berikut.
 
-Hasil pengujian menunjukkan bahwa sistem dapat melakukan klasifikasi objek, mendeteksi arah pergerakan, dan memperbarui kapasitas parkir secara otomatis pada skenario pengujian yang telah dilakukan.
+| Parameter | Nilai |
+|---|---|
+| Criterion | entropy |
+| Max depth | 3 |
+| Random state | 42 |
 
----
-
-## Dokumentasi dan Publikasi
-
-Dokumentasi proyek, slide presentasi, demo sistem, dan artikel publikasi dapat diakses melalui tautan berikut.
-
-<p>
-  <a href="https://canva.link/vgku0oqrcwyb0u5">
-    <img src="https://img.shields.io/badge/Slide%20Presentasi-Canva-00C4CC?style=for-the-badge&logo=canva" alt="Slide Presentasi">
-  </a>
-</p>
-
-<p>
-  <a href="https://drive.google.com/drive/folders/1W88d7SP1vm2doo_kTv0_wtPjQow8c0Vc?usp=drive_link">
-    <img src="https://img.shields.io/badge/Demo%20Sistem-Google%20Drive-blue?style=for-the-badge&logo=googledrive" alt="Demo Sistem">
-  </a>
-</p>
-
-<p>
-  <a href="https://j-ptiik.ub.ac.id/index.php/j-ptiik/article/view/16677">
-    <img src="https://img.shields.io/badge/Artikel%20Jurnal-J--PTIIK%20UB-red?style=for-the-badge" alt="Artikel Jurnal">
-  </a>
-</p>
-
-Artikel jurnal digunakan sebagai dokumentasi akademik utama yang dapat diakses secara publik. Dokumen skripsi lengkap tidak disertakan langsung pada repositori ini.
-
----
-
-## Tampilan Prototipe
-
-![Tampilan Prototipe](media/prototype.jpeg)
-
-Bagian ini dapat digunakan untuk menampilkan foto prototipe sistem, seperti platform pengukuran, rangkaian sensor, ESP32-S3, dan LED P10.
+Model yang telah dilatih kemudian dikonversi menjadi rule sederhana agar dapat diimplementasikan langsung pada ESP32-S3.
 
 ---
 
 ## Struktur Repositori
 
 ```text
+data/        Dataset mentah, data event, hasil ekstraksi fitur, dan pembagian data
 firmware/    Source code ESP32-S3 dan ESP32 receiver
-ml/          Notebook, script, dan rule model machine learning
-hardware/    Dokumentasi wiring dan skematik perangkat keras
-media/       Gambar, diagram, dan visual hasil pengujian
-data/        Contoh dataset atau contoh hasil ekstraksi fitur
+hardware/    Dokumentasi perangkat keras, desain platform, skematik, dan wiring
+media/       Gambar utama yang digunakan pada README
+ml/          Pipeline Google Colab untuk preprocessing, training, evaluasi, dan visualisasi
 ```
 
 ---
 
-## Rencana Isi Folder
+## Isi Folder
+
+### data/
+
+Folder ini berisi data yang digunakan dalam proses klasifikasi. Data dapat mencakup data mentah hasil akuisisi sensor, data event yang sudah dipotong, dataset hasil ekstraksi fitur, serta informasi pembagian data training dan testing.
 
 ### firmware/
 
-Berisi source code untuk mikrokontroler.
+Folder ini berisi source code mikrokontroler yang digunakan pada prototipe sistem, yaitu program utama ESP32-S3 dan program ESP32 receiver untuk tampilan LED P10.
 
 ```text
-esp32-s3-main/
-esp32-receiver-led-p10/
-```
-
-### ml/
-
-Berisi proses pengolahan data dan machine learning.
-
-```text
-notebooks/
-scripts/
-model/
+firmware/
+├── esp32-s3-main/
+└── esp32-receiver-led-p10/
 ```
 
 ### hardware/
 
-Berisi dokumentasi perangkat keras.
-
-```text
-wiring.md
-schematic.png
-```
+Folder ini berisi dokumentasi perangkat keras, seperti desain platform load cell, desain papan sensor ultrasonik, skematik sistem, wiring, dan foto prototipe.
 
 ### media/
 
-Berisi gambar dan visual pendukung README.
+Folder ini berisi gambar utama yang ditampilkan pada README.
 
 ```text
-prototype.jpg
-system-architecture.png
-ml-pipeline.png
-results-summary.png
+media/
+├── prototype.jpeg
+├── system-architecture.jpeg
+└── ml-pipeline.jpeg
 ```
 
-### data/
+### ml/
 
-Berisi contoh dataset atau contoh fitur yang digunakan pada proses klasifikasi.
-
-```text
-sample/
-```
+Folder ini berisi pipeline Google Colab yang digunakan untuk proses preprocessing, ekstraksi fitur, pelatihan model Decision Tree, evaluasi model, export rule, dan visualisasi hasil.
 
 ---
 
 ## Catatan Dataset
 
-Dataset penuh tidak selalu perlu dipublikasikan secara langsung pada repositori ini. Untuk menjaga kerapian dokumentasi dan menghindari data mentah yang tidak diperlukan, repositori ini dapat hanya menyertakan contoh data atau contoh hasil ekstraksi fitur.
+Dataset pada repositori ini digunakan untuk mendukung dokumentasi dan reproduksi proses machine learning. Data yang dipublikasikan telah dipilih agar tetap relevan dengan kebutuhan proyek.
 
-Contoh data digunakan untuk memperlihatkan format fitur yang dipakai dalam proses klasifikasi.
+Dataset penuh atau data mentah yang tidak diperlukan tidak harus disertakan seluruhnya. Data yang tersedia pada folder `data/` digunakan untuk menunjukkan alur pengolahan data, mulai dari data sensor, segmentasi event, ekstraksi fitur, hingga evaluasi model.
+
+---
+
+## Cara Memahami Repositori
+
+Repositori ini dapat dipahami melalui urutan berikut:
+
+1. Baca ringkasan proyek pada README ini.
+2. Lihat demo sistem melalui tautan Google Drive.
+3. Baca artikel jurnal sebagai dokumentasi akademik utama.
+4. Lihat folder `hardware/` untuk memahami rancangan perangkat keras.
+5. Lihat folder `firmware/` untuk memahami implementasi mikrokontroler.
+6. Lihat folder `data/` untuk memahami format data yang digunakan.
+7. Lihat folder `ml/` untuk memahami proses preprocessing, ekstraksi fitur, training, evaluasi, dan visualisasi model.
 
 ---
 
@@ -306,12 +313,12 @@ Proyek ini telah diselesaikan sebagai proyek skripsi sarjana.
 
 Pengembangan lanjutan yang dapat dilakukan:
 
-- Penambahan jumlah dataset
-- Pengujian dengan variasi sepeda motor dan objek non-motor yang lebih banyak
-- Perbaikan desain mekanik platform
-- Integrasi dengan dashboard monitoring berbasis cloud
-- Perbandingan dengan metode klasifikasi lain
-- Pengembangan sistem monitoring berbasis web atau aplikasi
+- penambahan jumlah dataset,
+- pengujian dengan variasi sepeda motor dan objek non-motor yang lebih banyak,
+- perbaikan desain mekanik platform,
+- integrasi dengan dashboard monitoring berbasis web atau cloud,
+- perbandingan dengan metode klasifikasi lain,
+- pengembangan sistem monitoring parkir yang terhubung langsung dengan sistem informasi kampus.
 
 ---
 
@@ -328,4 +335,4 @@ Universitas Brawijaya
 
 Source code pada repositori ini menggunakan MIT License.
 
-Artikel jurnal, slide presentasi, gambar, dan materi akademik tetap menjadi milik akademik penulis. Dokumen skripsi lengkap tidak dipublikasikan langsung pada repositori ini.
+Artikel jurnal, slide presentasi, gambar, dataset, dan materi akademik tetap menjadi milik akademik penulis. Dokumen skripsi lengkap tidak dipublikasikan langsung pada repositori ini.

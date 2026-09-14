@@ -6,7 +6,7 @@
 
 ### Undergraduate Thesis Project  
 Computer Engineering — Faculty of Computer Science  
-Universitas Brawijaya
+Brawijaya University
 
 <br>
 
@@ -26,13 +26,13 @@ Universitas Brawijaya
 
 ## Project Overview
 
-This project was developed as a continuation of my internship project at the Directorate of Information Technology, Universitas Brawijaya (DTI UB). The project was motivated by a parking monitoring problem within the Universitas Brawijaya campus area.
+This project was developed as a continuation of my internship project at the Directorate of Information Technology, Universitas Brawijaya (DTI UB). The project was motivated by a parking monitoring problem within the Universitas Brawijaya campus area, especially related to the mismatch between displayed parking capacity information and the actual condition in the field.
 
-The main issue addressed in this project is the mismatch between actual parking capacity and the information shown to users. In some cases, parking areas that are already full may still appear to have available capacity, causing students to spend unnecessary time searching for parking spaces. On the other hand, parking areas that still have available spaces may appear to be full, resulting in inefficient use of parking facilities.
+In some situations, parking areas that are already full may still appear to have available capacity, causing students to spend more time searching for a parking space. On the other hand, parking areas that still have available spaces may appear to be full, resulting in less effective use of parking facilities.
 
-To address this problem, this project develops a one-gate parking monitoring prototype that classifies passing objects as either motorcycles or non-motor objects. The system uses load cell sensors to capture dynamic load changes, ultrasonic sensors to support direction detection, and a Decision Tree model for object classification.
+To address this problem, this project develops a one-gate parking monitoring prototype that classifies passing objects as either motorcycles or non-motor objects. The system uses dynamic load signals from load cell sensors, ultrasonic sensors to support direction detection, and a Decision Tree method for the classification process.
 
-The classification result and direction detection are then used to automatically update parking capacity information and display it on a P10 LED panel.
+The classification and direction detection results are then used to automatically update parking capacity information and display it on a P10 LED panel.
 
 ---
 
@@ -48,18 +48,20 @@ English interpretation:
 
 ## Background
 
-Parking monitoring systems are important because inaccurate parking capacity information can reduce the effectiveness of parking space utilization. In a campus environment, this condition may cause users to spend more time looking for parking or ignore parking areas that are actually still available.
+Parking capacity monitoring is an important part of parking area management, especially in a campus environment with high student mobility. Inaccurate parking capacity information may cause users to spend unnecessary time searching for parking spaces or leave available parking areas underutilized.
 
-This project uses a one-gate monitoring approach. Passing objects are classified as motorcycles or non-motor objects based on dynamic load signal patterns captured by load cell sensors. Through this approach, the system can help update parking capacity based on objects that actually enter or leave the parking area.
+This project uses a one-gate monitoring approach. Objects passing through the gate are classified based on dynamic load signal patterns captured by load cell sensors. With this approach, the system does not only detect whether an object passes through the measurement area, but also determines whether the object is a motorcycle or not.
+
+This classification is important because not every object passing through the measurement area should affect motorcycle parking capacity. Therefore, the system is designed so that parking capacity is updated only based on relevant objects and their movement direction.
 
 ---
 
 ## Project Objectives
 
-The objectives of this project are to build a prototype system capable of:
+The objective of this project is to build a prototype system capable of:
 
 - reading dynamic load signals from passing objects,
-- classifying motorcycles and non-motor objects,
+- classifying objects as motorcycles or non-motor objects,
 - detecting object movement direction,
 - updating parking capacity automatically,
 - displaying parking capacity information on a P10 LED panel.
@@ -119,7 +121,7 @@ ESP32 Receiver + P10 LED Display
 
 ## System Workflow
 
-The system generally works through the following steps:
+In general, the system works through the following stages:
 
 1. An object passes over the measurement platform.
 2. The load cell sensors read load changes as raw values.
@@ -127,9 +129,9 @@ The system generally works through the following steps:
 4. When the signal change exceeds the threshold, the system detects a passing-object event.
 5. The event data is used to generate signal features.
 6. The extracted features are processed using Decision Tree rules.
-7. The system classifies the object as either motorcycle or non-motor.
+7. The system determines whether the object is a motorcycle or a non-motor object.
 8. Ultrasonic sensors support movement direction detection.
-9. Parking capacity is updated based on the classification and direction result.
+9. Parking capacity is updated based on the classification and direction results.
 10. The updated capacity information is sent to the ESP32 receiver and displayed on the P10 LED panel.
 
 ---
@@ -207,13 +209,13 @@ The following features are used to represent the characteristics of each dynamic
 | Direction detection accuracy | 97.27% |
 | Parking capacity calculation accuracy | 89.09% |
 
-The evaluation results show that the system is able to perform object classification and parking capacity updates automatically under the tested scenario.
+The evaluation results show that the system is able to classify passing objects, detect movement direction, and update parking capacity automatically under the tested scenario.
 
 ---
 
 ## Documentation and Publication
 
-The thesis document, presentation slides, system demo, and published article can be accessed through the following links.
+Project documentation, presentation slides, system demo, and the published article can be accessed through the following links.
 
 <p>
   <a href="https://canva.link/vgku0oqrcwyb0u5">
@@ -233,11 +235,7 @@ The thesis document, presentation slides, system demo, and published article can
   </a>
 </p>
 
-The full undergraduate thesis document is available at:
-
-```text
-docs/skripsi-zidan-fadil-yahya.pdf
-```
+The published article is used as the main publicly accessible academic documentation. The full undergraduate thesis document is not included directly in this repository.
 
 ---
 
@@ -259,26 +257,16 @@ This section can be used to show the prototype, including the measurement platfo
 ## Repository Structure
 
 ```text
-docs/        Thesis document and presentation files
 firmware/    ESP32-S3 and ESP32 receiver source code
-ml/          Machine learning notebook, scripts, and model rule
+ml/          Machine learning notebook, scripts, and model rules
 hardware/    Wiring and schematic documentation
 media/       Images, diagrams, and result visuals
-data/        Sample dataset
+data/        Sample dataset or extracted feature examples
 ```
 
 ---
 
 ## Planned Folder Contents
-
-### docs/
-
-Contains academic documents related to the project.
-
-```text
-skripsi-zidan-fadil-yahya.pdf
-presentation.pdf
-```
 
 ### firmware/
 
@@ -331,9 +319,9 @@ sample/
 
 ## Dataset Note
 
-The full dataset is not necessarily published directly in this repository. To keep the documentation clean and avoid unnecessary raw testing files, this repository may only include sample data or extracted feature examples.
+The full dataset does not necessarily need to be published directly in this repository. To keep the documentation clean and avoid unnecessary raw testing files, this repository may only include sample data or extracted feature examples.
 
-The sample data can be used to show the feature format used in the classification process.
+The sample data is used to show the feature format used in the classification process.
 
 ---
 
@@ -365,4 +353,4 @@ Universitas Brawijaya
 
 Source code in this repository is licensed under the MIT License.
 
-The thesis document, presentation files, images, and academic materials remain under the author's academic ownership.
+The published article, presentation slides, images, and academic materials remain under the author's academic ownership. The full undergraduate thesis document is not published directly in this repository.

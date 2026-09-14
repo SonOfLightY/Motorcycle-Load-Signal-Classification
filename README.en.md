@@ -84,14 +84,7 @@ The objective of this project is to build a prototype system capable of:
 
 ## System Architecture
 
-<!--
-Add the system architecture image to the media folder with this name:
-media/system-architecture.png
-
-After the image is available, remove this comment and activate the line below.
--->
-
-<!-- ![System Architecture](media/system-architecture.png) -->
+![Arsitektur Sistem](media/system-architecture.jpeg)
 
 The system consists of an ESP32-S3 as the main controller, load cell sensors, HX711 modules, ultrasonic sensors, ESP-NOW communication, an ESP32 receiver, and a P10 LED panel as the display unit.
 
@@ -152,14 +145,7 @@ In general, the system works through the following stages:
 
 ## Machine Learning Pipeline
 
-<!--
-Add the machine learning pipeline image to the media folder with this name:
-media/ml-pipeline.png
-
-After the image is available, remove this comment and activate the line below.
--->
-
-<!-- ![Machine Learning Pipeline](media/ml-pipeline.png) -->
+![Alur Machine Learning](media/ml-pipeline.jpeg)
 
 The Decision Tree model was trained using features extracted from dynamic load signal data.
 
@@ -241,14 +227,7 @@ The published article is used as the main publicly accessible academic documenta
 
 ## Prototype Preview
 
-<!--
-Add the main prototype photo to the media folder with this name:
-media/prototype.jpg
-
-After the image is available, remove this comment and activate the line below.
--->
-
-<!-- ![Prototype Preview](media/prototype.jpg) -->
+![Tampilan Prototipe](media/prototype.jpeg)
 
 This section can be used to show the prototype, including the measurement platform, sensor circuit, ESP32-S3, and P10 LED display.
 
